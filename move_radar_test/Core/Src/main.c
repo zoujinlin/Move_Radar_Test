@@ -106,10 +106,10 @@ int main(void)
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
-  //MX_FREERTOS_Init();
+  MX_FREERTOS_Init();
 
   /* Start scheduler */
-  //osKernelStart();
+  osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
@@ -117,7 +117,7 @@ int main(void)
   while (1)
   {
 		//HAL_UART_Transmit(&huart1,"hello world", 11, 1000);
-		HAL_UART_Transmit(&huart2,"hello world\n", 12, 1000);
+		HAL_UART_Transmit(&huart2,(uint8_t*)"hello world\n", 12, 1000);
 		//HAL_UART_Transmit(&huart3,"hello world", 11, 1000);
 		HAL_Delay(1000);
     /* USER CODE END WHILE */
