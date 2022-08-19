@@ -663,6 +663,16 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>user_radar.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\user_radar.c</FilePath>
+            </File>
+            <File>
+              <FileName>user_radar.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\user_radar.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

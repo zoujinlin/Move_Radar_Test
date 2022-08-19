@@ -32,13 +32,14 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "cmsis_os.h"
-#include "user_key.h"
 #include "stdint.h"
 #include "string.h"
 #include "stdio.h"
 #include "usart.h"
-#include "user_fun.h"
 #include "tim.h"
+#include "user_key.h"
+#include "user_fun.h"
+#include "user_radar.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -89,12 +90,26 @@ void microdelay(uint32_t us);
 #define AUTO 0
 #define MANU 1
 
+//motot auto control state
+#define M_STOP 0
+#define M_RUN  1
+#define M_WAIT 2
+
 #define MAX_MV_TIME 1000 //ms
+#define BUFF_LEN    768
 typedef struct
 {
 	uint8_t  key;
 	uint8_t  M_mode;//the mode of motor,1=manual / 0=auto 
 	uint32_t Move_cnt;//move count for one time
+	uint8_t  M_state;//the motor control state
+	uint8_t  M_stc;//the motro stop time count, then switch the direction
+	
+	uint16_t rcv_timeout;//time out of data receive of radar
+	uint8_t  rcv_flag;//data receive flag, 1:received ong pack, 0:no receive 
+	uint8_t  urbuff[BUFF_LEN];//the buff of data receive from radar
+	uint8_t  spcbuff[256];//the buff of data send to pc
+	uint8_t  send_cfg;//send ods cfg flag 
 }SYSRAMTYPE;
 extern SYSRAMTYPE SysRam;
 /* USER CODE END Private defines */

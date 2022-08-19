@@ -47,6 +47,7 @@
 /* USER CODE BEGIN Variables */
 osThreadId keyTaskHandle;
 osThreadId funTaskHandle;
+osThreadId RadarTaskHandle;
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 
@@ -113,6 +114,9 @@ void MX_FREERTOS_Init(void) {
 
 	osThreadDef(funTask, StartFunTask, osPriorityHigh, 0, 128);
 	funTaskHandle = osThreadCreate(osThread(funTask), NULL);	
+	
+	osThreadDef(radarTask, StartRadarTask, osPriorityHigh, 0, 128);
+	RadarTaskHandle= osThreadCreate(osThread(radarTask), NULL);	
   /* USER CODE END RTOS_THREADS */
 
 }

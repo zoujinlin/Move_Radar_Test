@@ -74,6 +74,11 @@ void StartKeyTask(void const * argument)
 				SysRam.M_mode = AUTO;
 		}
 		
+		if(KeyRamSW1.state == KEYRLSTRUE)
+		{
+			SysRam.send_cfg = 1;
+		}
+		
 		osDelay(KEYCYC);
 	}
 }	
