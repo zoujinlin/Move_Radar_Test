@@ -90,24 +90,28 @@ void microdelay(uint32_t us);
 #define AUTO 0
 #define MANU 1
 
-//motot auto control state
-#define M_STOP 0
-#define M_RUN  1
-#define M_WAIT 2
+//motor run direction define
+#define M_STOP  0 //motor stop
+#define M_FAR   1 //motor far away
+#define M_NEAR  2 //motor close to
 
 #define MAX_MV_TIME 1000 //ms
 #define BUFF_LEN    768
+#define UR2R_LEN 32
 typedef struct
 {
 	uint8_t  key;
 	uint8_t  M_mode;//the mode of motor,1=manual / 0=auto 
+	uint8_t  M_dir;//the direction of motor move on, 0:stop,1:far away, 2:close to
+	uint8_t  M_pos_end;//to point out stop at whitch end 
 	uint32_t Move_cnt;//move count for one time
-	uint8_t  M_state;//the motor control state
-	uint8_t  M_stc;//the motro stop time count, then switch the direction
+	uint8_t  move_com;//move compensation
 	
 	uint16_t rcv_timeout;//time out of data receive of radar
 	uint8_t  rcv_flag;//data receive flag, 1:received ong pack, 0:no receive 
 	uint8_t  urbuff[BUFF_LEN];//the buff of data receive from radar
+	uint8_t  rcv2_flag;//uart2 receive flag
+	uint8_t  ur2buff[UR2R_LEN];//uart2 reveive buff
 	uint8_t  spcbuff[256];//the buff of data send to pc
 	uint8_t  send_cfg;//send ods cfg flag 
 }SYSRAMTYPE;

@@ -13,13 +13,16 @@ typedef struct
 	uint32_t T_type;//TLV type
 	uint32_t T_len;//TLV len
 	
+	uint32_t T_id;//tracked object id
+	float    posX;
+	float    posY;
+	float    velX;
+	float    velY;
 }RADARTYPE;
 extern RADARTYPE RadarRam;
 
 
 extern void StartRadarTask(void const * argument);
-extern void Radar_Resolver(uint8_t *databuff, RADARTYPE *result);
-
 
 
 #endif

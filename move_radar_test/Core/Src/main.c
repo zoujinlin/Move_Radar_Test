@@ -117,7 +117,8 @@ int main(void)
   while (1)
   {
 		//HAL_UART_Transmit(&huart1,"hello world", 11, 1000);
-		HAL_UART_Transmit(&huart2,(uint8_t*)"hello world\n", 12, 1000);
+		//HAL_UART_Transmit(&huart2,(uint8_t*)"hello world\n", 12, 1000);
+		printf("hellow world!\n");
 		//HAL_UART_Transmit(&huart3,"hello world", 11, 1000);
 		HAL_Delay(1000);
     /* USER CODE END WHILE */
@@ -167,7 +168,14 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+int fputc(int ch, FILE* stream)
+{
+	//USART_SendData(USART1, (unsigned char) ch);
+	//while (!(USART1->SR & USART_FLAG_TXE));
+	HAL_UART_Transmit(&huart2,(uint8_t*)&ch, 1, 100);
 
+	return ch;
+}
 /* USER CODE END 4 */
 
 /**
